@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Pricing.Core.Domain;
 
 namespace Pricing.Core.Tests;
 
@@ -8,7 +9,7 @@ public class ApplyPricingSpecification
 
     public ApplyPricingSpecification()
     {
-        _pricingManager = new PricingManager();
+        _pricingManager = new PricingManager(new DummyPricingStore());
     }
 
     [Fact]
@@ -26,15 +27,10 @@ public class ApplyPricingSpecification
     }
 }
 
-public class ApplyPricingRequest
+public class DummyPricingStore : IPricingStore
 {
-}
-
-public class PricingManager
-{
-    public Task<bool> HandleAsync(ApplyPricingRequest request, CancellationToken o1)
+    public Task<bool> SaveAsync(PricingTable pricingTable, CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(request);
-        return Task.FromResult(true);
+        throw new NotImplementedException();
     }
 }

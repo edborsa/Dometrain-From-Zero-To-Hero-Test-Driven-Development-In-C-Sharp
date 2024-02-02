@@ -28,4 +28,13 @@ public class ApplyPricingSpecification
         var result = await pricingManager.HandleAsync(new ApplyPricingRequest(), default);
         result.Should().BeFalse();
     }
+    
+    [Fact]
+    public async Task Should_save_only_once()
+    {
+        var spyPricingServices = new SpyPricingServices();
+        var pricingManager = new PricingManager(spyPricingServices);
+        var _ = await pricingManager.HandleAsync(new ApplyPricingRequest(), default);
+        spyPricingServices.NumberOfSaves.Should().Be(1);
+    }
 }

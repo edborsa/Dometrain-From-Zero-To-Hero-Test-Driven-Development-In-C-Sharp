@@ -1,6 +1,11 @@
-- [] A pricing table  has at least one tier
-- [] A pricint table has  a set or tier
-- [] Pricing Table covers 24h
-- [] pricing tear are ordered by hour limit
-- [] Max price eq to sum of tiers if not defined 
-- [] Max price < full day though table
+- [x] A pricing table  has at least one tier
+- [x] A pricing table has  a set or tier
+- [x] Pricing Table covers 24h
+- [x] pricing tear are ordered by hour limit
+- [x] Max price eq to sum of tiers if not defined 
+- [x] Max value is eq to the provided value
+- [x] Max price < full day though table
+
+- [] Hour limit should be between 1 and 24
+- [] The Price can't be negative
+- [] Improve exception-based tests

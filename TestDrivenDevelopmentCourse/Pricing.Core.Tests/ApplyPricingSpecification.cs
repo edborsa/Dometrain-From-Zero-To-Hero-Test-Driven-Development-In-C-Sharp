@@ -1,36 +1,31 @@
 using FluentAssertions;
-using Pricing.Core.Domain;
+using Pricing.Core.Tests.Domain.TestDoubles;
 
 namespace Pricing.Core.Tests;
 
 public class ApplyPricingSpecification
 {
-    private readonly PricingManager _pricingManager;
-
-    public ApplyPricingSpecification()
-    {
-        _pricingManager = new PricingManager(new DummyPricingStore());
-    }
-
     [Fact]
     public async Task Should_throw_argument_null_exception_if_request_is_null()
     {
-        var handleRequest = () => _pricingManager.HandleAsync(null!, default);
+        var pricingManager = new PricingManager(new DummyPricingStore());
+        var handleRequest = () => pricingManager.HandleAsync(null!, default);
         await handleRequest.Should().ThrowAsync<ArgumentNullException>();
     }
     
     [Fact]
     public async Task Should_return_true_if_succeeded()
     {
-        var result = await _pricingManager.HandleAsync(new ApplyPricingRequest(), default);
+        var pricingManager = new PricingManager(new StubSuccessPricingStore());
+        var result = await pricingManager.HandleAsync(new ApplyPricingRequest(), default);
         result.Should().BeTrue();
     }
-}
-
-public class DummyPricingStore : IPricingStore
-{
-    public Task<bool> SaveAsync(PricingTable pricingTable, CancellationToken cancellationToken)
+    
+    [Fact]
+    public async Task Should_return_fail_if_fail_to_save()
     {
-        throw new NotImplementedException();
+        var pricingManager = new PricingManager(new StubFailPricingStore());
+        var result = await pricingManager.HandleAsync(new ApplyPricingRequest(), default);
+        result.Should().BeFalse();
     }
 }

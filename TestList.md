@@ -7,5 +7,11 @@
 - [x] Max price < full day though table
 
 - [x] Hour limit should be between 1 and 24
-- [] The Price can't be negative
-- [] Improve exception-based tests
+- [x] The Price can't be negative
+- [x] Improve exception-based tests
+
+---
+
+- [x] Fail if request is null
+- [x] Return bool as true if succeed
+- [ ] Invoke storage only once

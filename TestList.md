@@ -14,4 +14,6 @@
 
 - [x] Fail if request is null
 - [x] Return bool as true if succeed
-- [ ] Invoke storage only once
+- [x] Invoke storage only once
+- [x] Request is mapped correctly to storage
+- [ ] External dependency is invoked and that it stored the input 

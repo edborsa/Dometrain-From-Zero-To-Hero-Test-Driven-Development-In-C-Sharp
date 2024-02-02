@@ -1,3 +1,5 @@
+using Pricing.Core.Domain.Extensions;
+
 namespace Pricing.Core;
 
 public class PricingManager
@@ -12,6 +14,7 @@ public class PricingManager
     public async Task<bool> HandleAsync(ApplyPricingRequest request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
-        return await _pricingStore.SaveAsync(null!, cancellationToken);
+        var pricingTable = request.ToPricingTable();
+        return await _pricingStore.SaveAsync(pricingTable, cancellationToken);
     }
 }

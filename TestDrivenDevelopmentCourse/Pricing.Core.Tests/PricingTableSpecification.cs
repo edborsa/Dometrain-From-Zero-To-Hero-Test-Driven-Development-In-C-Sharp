@@ -6,7 +6,7 @@ namespace Pricing.Core.Tests;
 public class PricingTableSpecification
 {
     [Fact]
-    public void Should_fail_if_price_tiers_is_null()
+    public void Should_throw_argument_null_exception_if_price_tiers_is_null()
     {
         var create = () => new PricingTable(null);
 
@@ -14,11 +14,13 @@ public class PricingTableSpecification
     }
 
     [Fact]
-    public void Should_fail_if_has_no_price_tiers()
+    public void Should_throw_argument_exception_if_has_no_price_tiers()
     {
         var create = () => new PricingTable(Array.Empty<PriceTier>());
 
-        create.Should().ThrowExactly<ArgumentException>();
+        create.Should().ThrowExactly<ArgumentException>()
+            .WithParameterName(nameof(PricingTable.Tiers))
+            .WithMessage("Missing Pricing Tears *");
     }
 
     [Fact]

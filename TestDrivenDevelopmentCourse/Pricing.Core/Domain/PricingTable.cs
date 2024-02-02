@@ -12,7 +12,7 @@ public class PricingTable
         Tiers = tiers?.OrderBy(tier => tier.HourLimit).ToImmutableArray() ?? throw new ArgumentNullException();
 
         if (!Tiers.Any())
-            throw new ArgumentException();
+            throw new ArgumentException(message: "Missing Pricing Tears", nameof(Tiers));
 
         if (Tiers.Last().HourLimit < 24)
             throw new ArgumentException();

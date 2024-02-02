@@ -6,6 +6,6 @@
 - [x] Max value is eq to the provided value
 - [x] Max price < full day though table
 
-- [] Hour limit should be between 1 and 24
+- [x] Hour limit should be between 1 and 24
 - [] The Price can't be negative
 - [] Improve exception-based tests

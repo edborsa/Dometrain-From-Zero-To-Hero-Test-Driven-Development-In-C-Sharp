@@ -1,0 +1,6 @@
+- [] A pricing table  has at least one tier
+- [] A pricint table has  a set or tier
+- [] Pricing Table covers 24h
+- [] pricing tear are ordered by hour limit
+- [] Max price eq to sum of tiers if not defined 
+- [] Max price < full day though table

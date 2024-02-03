@@ -66,6 +66,22 @@ public class ApplyPricingSpecification
             table => table.Tiers.Count == expectedPricingTable.Tiers.Count), default);
     }
     
+    
+    [Fact]
+    public async Task Should_save_equivalent_data_to_the_storage()
+    {
+        var pricingStore = new InMemoryPricingStoreFake();
+        var pricingManager = new PricingManager(pricingStore);
+
+        var applyPricingRequest = CreateRequest();
+        var _ = await pricingManager.HandleAsync(applyPricingRequest, default);
+
+        pricingStore.GetPricingTable()
+            .Should()
+            .BeEquivalentTo(applyPricingRequest);
+
+    }
+    
 
     private static ApplyPricingRequest CreateRequest()
     {
@@ -75,27 +91,5 @@ public class ApplyPricingSpecification
                 new PriceTierRequest(24, 1)
             }
         );
-    }
-}
-
-public class MockPricingStore : IPricingStore
-{
-    private PricingTable _expectedPricingTable;
-    private PricingTable _savedPricingTable;
-
-    public Task<bool> SaveAsync(PricingTable pricingTable, CancellationToken cancellationToken)
-    {
-        _savedPricingTable = pricingTable;
-        return Task.FromResult(true);
-    }
-
-    public void Verify()
-    {
-        _savedPricingTable.Should().BeEquivalentTo(_expectedPricingTable);
-    }
-
-    public void ExpectedToSave(PricingTable expectedPricingTable)
-    {
-        _expectedPricingTable = expectedPricingTable;
     }
 }

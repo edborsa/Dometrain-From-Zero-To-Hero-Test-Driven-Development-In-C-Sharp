@@ -22,5 +22,11 @@
 
 - [x] Throw exception if missing connection
 - [x] Insert if not exist
-- [ ] Replace if exists
+- [x] Replace if exists
 - [x] Return true if succeed
+
+---
+
+- [x] 500 if unknown error
+- [ ] 200 if success
+- [x] 400 if returns false

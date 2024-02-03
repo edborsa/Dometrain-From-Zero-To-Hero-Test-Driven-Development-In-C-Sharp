@@ -2,7 +2,12 @@ using Pricing.Core.Domain.Extensions;
 
 namespace Pricing.Core;
 
-public class PricingManager
+public interface IPricingManager
+{
+    Task<bool> HandleAsync(ApplyPricingRequest request, CancellationToken cancellationToken);
+}
+
+public class PricingManager : IPricingManager
 {
     private readonly IPricingStore _pricingStore;
 

@@ -25,10 +25,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pricing.API\Pricing.API.csproj" />
+      <ProjectReference Include="..\..\src\Pricing.API\Pricing.API.csproj" />
+      <ProjectReference Include="..\..\src\Pricing.Core\Pricing.Core.csproj" />
+      <ProjectReference Include="..\..\src\Pricing.Infrastructure\Pricing.Infrastructure.csproj" />
       <ProjectReference Include="..\Pricing.Core.Tests\Pricing.Core.Tests.csproj" />
-      <ProjectReference Include="..\Pricing.Core\Pricing.Core.csproj" />
-      <ProjectReference Include="..\Pricing.Infrastructure\Pricing.Infrastructure.csproj" />
     </ItemGroup>
+
 
 </Project>

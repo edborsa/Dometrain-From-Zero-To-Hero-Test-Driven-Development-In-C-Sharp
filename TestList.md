@@ -16,4 +16,11 @@
 - [x] Return bool as true if succeed
 - [x] Invoke storage only once
 - [x] Request is mapped correctly to storage
-- [ ] External dependency is invoked and that it stored the input 
+- [x] External dependency is invoked and that it stored the input 
+
+---
+
+- [x] Throw exception if missing connection
+- [x] Insert if not exist
+- [ ] Replace if exists
+- [x] Return true if succeed
